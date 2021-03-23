@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">ToDoApps</string>
+    <string name="edit_title">Title</string>
+    <string name="edit_description">Description</string>
+    <string name="edit_date">Date</string>
+    <string name="edit_priority">Priority</string>
+    <string name="edit_high">High</string>
+    <string name="edit_medium">Medium</string>
+    <string name="edit_low">Low</string>
+    <string name="edit_save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!--    Dashboard string name-->
+    <string name="please_wait">Please wait...</string>
+    <string name="account">Already have an account?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="user">User Name</string>
+    <string name="password">Password</string>
+    <string name="btn_login">Login</string>
+    <string name="create_account">Login to continue your account</string>
 </resources>

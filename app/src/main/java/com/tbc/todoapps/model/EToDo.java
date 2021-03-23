@@ -1,7 +1,9 @@
 package com.tbc.todoapps.model;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
@@ -9,12 +11,12 @@ import com.tbc.todoapps.util.DateConverter;
 
 import java.util.Date;
 
-@Entity
+@Entity(tableName = "todo_table")
 public class EToDo {
-    @ColumnInfo(name ="id")
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @NonNull
     @ColumnInfo(name = "title")
     private String title;
 
@@ -29,9 +31,13 @@ public class EToDo {
     private Date todoDate;
 
     @ColumnInfo(name ="is_Complete")
-    private Boolean isComplete;
+    private boolean isComplete;
 
-    public EToDo(String title, String description, int priority, Date todoDate, Boolean isComplete) {
+    @Ignore
+    public EToDo() {
+    }
+
+    public EToDo(@NonNull String title, String description, int priority, Date todoDate, boolean isComplete) {
         this.title = title;
         this.description = description;
         this.priority = priority;
@@ -47,11 +53,12 @@ public class EToDo {
         this.id = id;
     }
 
+    @NonNull
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(@NonNull String title) {
         this.title = title;
     }
 
@@ -79,11 +86,11 @@ public class EToDo {
         this.todoDate = todoDate;
     }
 
-    public Boolean getComplete() {
+    public boolean getComplete() {
         return isComplete;
     }
 
-    public void setComplete(Boolean complete) {
+    public void setComplete(boolean complete) {
         isComplete = complete;
     }
 }

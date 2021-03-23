@@ -12,16 +12,16 @@ import com.tbc.todoapps.model.EToDo;
 @Dao
 public interface ToDoDAO {
     @Insert
-    void insert (EToDo eToDo);
+    void insert (EToDo todo);
 
-    @Query("DELETE FROM eToDo")
+    @Query("DELETE FROM todo_table")
     void deleteALL();
 
     @Delete
-    void deleteById(EToDo eToDo);
+    void deleteById(EToDo todo);
 
-    @Query("SELECT * FROM eToDo WHERE id = :id")
-    EToDo getToDoItemById(Integer id);
+    @Query("SELECT * FROM todo_table WHERE id = :id")
+    EToDo getToDoItemById(String id);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(EToDo... todo);
