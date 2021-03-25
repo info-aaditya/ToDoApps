@@ -17,11 +17,12 @@ public abstract class ToDoRoomDatabase  extends RoomDatabase {
     public static ToDoRoomDatabase getDatabase(Context context){
         if (INSTANCE == null){
             synchronized (ToDoRoomDatabase.class){
-                if (INSTANCE == null){}
-                INSTANCE= Room.databaseBuilder(context.getApplicationContext(), ToDoRoomDatabase.class, "todo.db")
-                    .allowMainThreadQueries()
-                    .fallbackToDestructiveMigration()
-                    .build();
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), ToDoRoomDatabase.class, "todo.db")
+                            .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
+                            .build();
+                }
             }
         }
         return INSTANCE;

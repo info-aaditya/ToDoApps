@@ -34,6 +34,6 @@
         android:text="@string/please_wait"
         android:textColor="#474559"
         android:textSize="18sp"
-        android:textStyle="normal|bold|italic" />
+        android:textStyle="bold|italic" />
 
 </RelativeLayout>

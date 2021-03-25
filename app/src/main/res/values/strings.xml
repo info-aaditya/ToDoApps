@@ -9,6 +9,7 @@
     <string name="edit_low">Low</string>
     <string name="edit_save">Save</string>
     <string name="cancel">Cancel</string>
+    <string name="hello_blank_fragment">Hello Blank Fragment</string>
 
     <!--    Dashboard string name-->
     <string name="please_wait">Please wait...</string>
