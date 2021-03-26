@@ -1,12 +1,15 @@
 package com.tbc.todoapps;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -20,8 +23,8 @@ import com.tbc.todoapps.viewModel.TodoViewModel;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
-
 
 public class EditTodoFragment extends Fragment {
 
@@ -40,7 +43,6 @@ public class EditTodoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         rootView =  inflater.inflate(R.layout.fragment_edit_todo, container, false);
-
         txtTitle = rootView.findViewById(R.id.edit_fragment_txt_name);
         txtDescription = rootView.findViewById(R.id.edit_fragment_txt_description);
         txtDate = rootView.findViewById(R.id.edit_fragment_txt_date);
@@ -48,6 +50,16 @@ public class EditTodoFragment extends Fragment {
         chComplete = rootView.findViewById(R.id.edit_fragment_chk_complete);
         btnSave = rootView.findViewById(R.id.edit_fragment_btn_save);
         btnCancel = rootView.findViewById(R.id.edit_fragment_btn_cancel);
+
+        txtDate.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction()==MotionEvent.ACTION_DOWN)
+                    DisplayTestDate();
+                return false;
+
+            }
+        });
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +71,7 @@ public class EditTodoFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getActivity(),MainActivity.class);
+                Intent intent= new Intent(getActivity(), SplashActivity.class);
                 startActivity(intent);
             }
         });
@@ -101,7 +113,21 @@ public class EditTodoFragment extends Fragment {
         viewModel.insert(eToDo);
 
         Toast.makeText(getActivity(), "Todo Saved",Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent(getActivity(),MainActivity.class);
+        Intent intent= new Intent(getActivity(), SplashActivity.class);
         startActivity(intent);
+    }
+
+    void DisplayTestDate() {
+        Calendar calendar = Calendar.getInstance();
+        int cDay = calendar.get(Calendar.DAY_OF_MONTH);
+        int cMonth = calendar.get(Calendar.MONTH);
+        int cYear = calendar.get(Calendar.YEAR);
+        DatePickerDialog pickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                txtDate.setText(year + "-" + month + "-" + dayOfMonth);
+            }
+        }, cYear, cMonth, cDay);
+        pickerDialog.show();
     }
 }
