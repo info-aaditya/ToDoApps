@@ -1,6 +1,8 @@
 package com.tbc.todoapps;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,6 +35,7 @@ public class EditTodoFragment extends Fragment {
     RadioGroup rgPriority;
     Button btnSave, btnCancel;
     CheckBox chComplete;
+    TodoViewModel viewModel;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -43,6 +46,7 @@ public class EditTodoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         rootView =  inflater.inflate(R.layout.fragment_edit_todo, container, false);
+        viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         txtTitle = rootView.findViewById(R.id.edit_fragment_txt_name);
         txtDescription = rootView.findViewById(R.id.edit_fragment_txt_description);
         txtDate = rootView.findViewById(R.id.edit_fragment_txt_date);
@@ -71,8 +75,7 @@ public class EditTodoFragment extends Fragment {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getActivity(), SplashActivity.class);
-                startActivity(intent);
+                ShowAlertCancel();
             }
         });
         return rootView;
@@ -129,5 +132,28 @@ public class EditTodoFragment extends Fragment {
             }
         }, cYear, cMonth, cDay);
         pickerDialog.show();
+    }
+
+    void ShowAlertCancel(){
+        AlertDialog.Builder alertDialog;
+        alertDialog = new AlertDialog.Builder(getContext());
+        alertDialog.setMessage(getString(R.string.alert_message))
+                .setTitle(getString(R.string.app_name))
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent= new Intent(getActivity(),MainActivity.class);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        alertDialog.show();
     }
 }

@@ -92,11 +92,13 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginRight="40dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_corners"
                 android:lineSpacingExtra="30sp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@string/btn_login"
+                android:textAlignment="center"
                 android:textSize="22sp" />
 
             <LinearLayout

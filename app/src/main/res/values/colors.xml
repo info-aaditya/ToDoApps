@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="Loblolly">#BDC2CB</color>
+
+    <color name="Bright_Red">#B10000</color>
+    <color name="Turbo">#FFF000</color>
+    <color name="Fruit_Salad">#4CAF50</color>
 </resources>

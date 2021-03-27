@@ -6,12 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.tbc.todoapps.model.EToDo;
@@ -40,6 +42,22 @@ public class ListTodoFragment extends Fragment {
         rvListTodo.setLayoutManager(manager);
         updateRV();
 
+        new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+                    @Override
+                    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                        List<EToDo> toDoList = viewModel.getAllToDos().getValue();
+                        ToDoAdaptor adaptor = new ToDoAdaptor(toDoList);
+                        EToDo eToDo = adaptor.getToDoAt(viewHolder.getAdapterPosition());
+                    }
+
+                })
+                .attachToRecyclerView(rvListTodo);
         return  rootView;
     }
 
@@ -84,12 +102,27 @@ public class ListTodoFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ToDoHolder holder, int position){
             EToDo toDo = eToDoList.get(position);
+            LinearLayout layout = (LinearLayout)((ViewGroup)holder.title.getParent());
+            switch (toDo.getPriority()){
+                case    1:
+                    layout.setBackgroundColor(getResources().getColor(R.color.Bright_Red));
+                    break;
+                case 2:
+                    layout.setBackgroundColor(getResources().getColor(R.color.Turbo));
+                    break;
+                case 3:
+                    layout.setBackgroundColor(getResources().getColor(R.color.Fruit_Salad));
+            }
             holder.bind(toDo);
         }
 
         @Override
         public int getItemCount(){
             return eToDoList.size();
+        }
+
+        public EToDo getToDoAt(int index) {
+            return eToDoList.get(index);
         }
     }
 }

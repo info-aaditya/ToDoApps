@@ -25,8 +25,15 @@ public class TodoViewModel  extends AndroidViewModel {
         return allToDos;
     }
 
-    public void insert(EToDo toDo){
-        mToDoReprositry.insert(toDo);
+    public void insert(EToDo ToDo){
+        mToDoReprositry.insert(ToDo);
     }
 
+    public void deleteById(EToDo ToDo){
+        mToDoReprositry.deleteById(ToDo);
+    }
+
+    public void getTodoById(int id){
+        mToDoReprositry.getTodoById(id);
+    }
 }

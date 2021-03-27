@@ -53,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/Bright_Red"
             android:text="@string/edit_high" />
 
         <RadioButton
@@ -60,6 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/Turbo"
             android:text="@string/edit_medium" />
 
         <RadioButton
@@ -67,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@color/Fruit_Salad"
             android:text="@string/edit_low" />
     </RadioGroup>
 

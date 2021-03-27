@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDoApps</string>
+    <string name="app_name">ToDo Application</string>
     <string name="edit_title">Title</string>
     <string name="edit_description">Description</string>
     <string name="edit_date">Date</string>
@@ -10,7 +10,8 @@
     <string name="edit_save">Save</string>
     <string name="cancel">Cancel</string>
     <string name="hello_blank_fragment">Hello Blank Fragment</string>
-
+    <string name="alert_message">Do you want to cancel?</string>
+    <string name="ok">Ok</string>
     <!--    Dashboard string name-->
     <string name="please_wait">Please wait...</string>
     <string name="account">Already have an account?</string>

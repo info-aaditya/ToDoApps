@@ -40,6 +40,14 @@ public class ToDoReprositry {
         new insertToDoAysncTask(mToDoDAO).execute(eToDo);
     }
 
+    public void deleteById(EToDo eToDo){
+        new deleteByIdToDoAysncTask(mToDoDAO).execute(eToDo);
+    }
+
+    public EToDo getTodoById(int id){
+        return mToDoDAO.getToDoById(id);
+    }
+
     public static class insertToDoAysncTask extends AsyncTask<EToDo, Void, Void>{
         private ToDoDAO mToDoDao;
         private insertToDoAysncTask(ToDoDAO toDoDAO){
@@ -48,6 +56,18 @@ public class ToDoReprositry {
         @Override
         protected Void doInBackground(EToDo... eToDos){
             mToDoDao.insert(eToDos[0]);
+            return null;
+        }
+    }
+
+    public static class deleteByIdToDoAysncTask extends AsyncTask<EToDo, Void, Void>{
+        private ToDoDAO mToDoDao;
+        private deleteByIdToDoAysncTask(ToDoDAO toDoDAO){
+            mToDoDao = toDoDAO;
+        }
+        @Override
+        protected Void doInBackground(EToDo... eToDos){
+            mToDoDao.deleteById(eToDos[0]);
             return null;
         }
     }
