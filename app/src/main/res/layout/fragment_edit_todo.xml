@@ -65,7 +65,7 @@
             android:text="@string/edit_medium" />
 
         <RadioButton
-            android:id="@+id/edit_fragment_tb_low"
+            android:id="@+id/edit_fragment_rb_low"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

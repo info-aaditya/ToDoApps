@@ -30,19 +30,19 @@ public class EToDo {
     @ColumnInfo(name ="todo_Date")
     private Date todoDate;
 
-    @ColumnInfo(name ="is_Complete")
-    private boolean isComplete;
+    @ColumnInfo(name ="is_Completed")
+    private boolean isCompleted;
 
     @Ignore
     public EToDo() {
     }
 
-    public EToDo(@NonNull String title, String description, int priority, Date todoDate, boolean isComplete) {
+    public EToDo(@NonNull String title, String description, int priority, Date todoDate, boolean isCompleted) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.todoDate = todoDate;
-        this.isComplete = isComplete;
+        this.isCompleted = isCompleted;
     }
 
     public int getId() {
@@ -86,11 +86,11 @@ public class EToDo {
         this.todoDate = todoDate;
     }
 
-    public boolean getComplete() {
-        return isComplete;
+    public boolean isCompleted() {
+        return isCompleted;
     }
 
-    public void setComplete(boolean complete) {
-        isComplete = complete;
+    public void setCompleted(boolean complete) {
+        isCompleted = isCompleted;
     }
 }

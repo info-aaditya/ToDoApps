@@ -1,5 +1,6 @@
 package com.tbc.todoapps;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tbc.todoapps.model.EToDo;
 import com.tbc.todoapps.viewModel.TodoViewModel;
@@ -53,9 +55,9 @@ public class ListTodoFragment extends Fragment {
                     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                         List<EToDo> toDoList = viewModel.getAllToDos().getValue();
                         ToDoAdaptor adaptor = new ToDoAdaptor(toDoList);
-                        EToDo eToDo = adaptor.getToDoAt(viewHolder.getAdapterPosition());
+                        EToDo toDo = adaptor.getToDoAt(viewHolder.getAdapterPosition());
+                        viewModel.deleteById(toDo);
                     }
-
                 })
                 .attachToRecyclerView(rvListTodo);
         return  rootView;
@@ -73,10 +75,33 @@ public class ListTodoFragment extends Fragment {
 
     private class ToDoHolder extends RecyclerView.ViewHolder{
         TextView title, date;
-        public ToDoHolder(LayoutInflater inflater, ViewGroup parent){
+        public ToDoHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.listitem_todo, parent, false));
             title = itemView.findViewById(R.id.listitem_tv_title);
             date = itemView.findViewById(R.id.listitem_tv_date);
+
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadUpdateItem();
+                }
+            });
+            date.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadUpdateItem();
+                }
+            });
+        }
+
+        void loadUpdateItem(){
+            ToDoAdaptor adaptor = new ToDoAdaptor(viewModel.getAllToDos().getValue());
+            int i = getAdapterPosition();
+            EToDo toDo = adaptor.getToDoAt(i);
+            Intent intent = new Intent(getActivity(), EditActivity.class);
+            intent.putExtra("TodoId", toDo.getId());
+            startActivity(intent);
+            Toast.makeText(getContext(),"Update Item: " + toDo.getId(), Toast.LENGTH_LONG).show();
         }
 
         public void bind (EToDo toDo){
@@ -112,6 +137,7 @@ public class ListTodoFragment extends Fragment {
                     break;
                 case 3:
                     layout.setBackgroundColor(getResources().getColor(R.color.Fruit_Salad));
+                    break;
             }
             holder.bind(toDo);
         }
@@ -121,8 +147,8 @@ public class ListTodoFragment extends Fragment {
             return eToDoList.size();
         }
 
-        public EToDo getToDoAt(int index) {
-            return eToDoList.get(index);
+        public EToDo getToDoAt(int position) {
+            return eToDoList.get(position);
         }
     }
 }

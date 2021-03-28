@@ -30,10 +30,15 @@ public class TodoViewModel  extends AndroidViewModel {
     }
 
     public void deleteById(EToDo ToDo){
-        mToDoReprositry.deleteById(ToDo);
+        mToDoReprositry.delete(ToDo);
     }
 
-    public void getTodoById(int id){
+    public EToDo getTodoById(int id){
         mToDoReprositry.getTodoById(id);
+        return null;
+    }
+
+    public void update(EToDo eToDo){
+        mToDoReprositry.update(eToDo);
     }
 }

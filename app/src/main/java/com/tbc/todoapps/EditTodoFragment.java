@@ -35,7 +35,8 @@ public class EditTodoFragment extends Fragment {
     RadioGroup rgPriority;
     Button btnSave, btnCancel;
     CheckBox chComplete;
-    TodoViewModel viewModel;
+
+    int todoId;
 
     public static final int HIGH_PRIORITY = 1;
     public static final int MEDIUM_PRIORITY = 2;
@@ -46,7 +47,7 @@ public class EditTodoFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         rootView =  inflater.inflate(R.layout.fragment_edit_todo, container, false);
-        viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+//        viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
         txtTitle = rootView.findViewById(R.id.edit_fragment_txt_name);
         txtDescription = rootView.findViewById(R.id.edit_fragment_txt_description);
         txtDate = rootView.findViewById(R.id.edit_fragment_txt_date);
@@ -54,6 +55,8 @@ public class EditTodoFragment extends Fragment {
         chComplete = rootView.findViewById(R.id.edit_fragment_chk_complete);
         btnSave = rootView.findViewById(R.id.edit_fragment_btn_save);
         btnCancel = rootView.findViewById(R.id.edit_fragment_btn_cancel);
+
+        loadUpdateData();
 
         txtDate.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -101,7 +104,7 @@ public class EditTodoFragment extends Fragment {
             case R.id.edit_fragment_rb_medium:
                 priority = MEDIUM_PRIORITY;
                 break;
-            case R.id.edit_fragment_tb_low:
+            case R.id.edit_fragment_rb_low:
                 priority = LOW_PRIORITY;
                 break;
         }
@@ -110,14 +113,46 @@ public class EditTodoFragment extends Fragment {
         eToDo.setDescription(txtDescription.getText().toString());
         eToDo.setTodoDate(todoDate);
         eToDo.setPriority(priority);
-        eToDo.setComplete(chComplete.isChecked());
+        eToDo.setCompleted(chComplete.isChecked());
 
         TodoViewModel viewModel  = new ViewModelProvider(this).get(TodoViewModel.class);
-        viewModel.insert(eToDo);
+        if(todoId != -1){
+            eToDo.setId(todoId);
+            viewModel.update(eToDo);
+        } else {
+            viewModel.insert(eToDo);
+        }
 
         Toast.makeText(getActivity(), "Todo Saved",Toast.LENGTH_SHORT).show();
-        Intent intent= new Intent(getActivity(), SplashActivity.class);
+        Intent intent= new Intent(getActivity(), MainActivity.class);
         startActivity(intent);
+    }
+
+    void loadUpdateData(){
+        todoId = getActivity().getIntent().getIntExtra("TodoId", -1);
+        TodoViewModel viewModel = new ViewModelProvider(this).get(TodoViewModel.class);
+
+        if (todoId != -1) {
+            btnSave.setText("Update");
+            EToDo toDo = viewModel.getTodoById(todoId);
+            txtTitle.setText(toDo.getTitle());
+            txtDescription.setText(toDo.getDescription());
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+            txtDate.setText(format.format(toDo.getTodoDate()));
+            switch (toDo.getPriority()){
+                case 1:
+                    rgPriority.check(R.id.edit_fragment_rb_high);
+                    break;
+                case 2:
+                    rgPriority.check(R.id.edit_fragment_rb_medium);
+                    break;
+                case 3:
+                    rgPriority.check(R.id.edit_fragment_rb_low);
+                    break;
+            }
+            chComplete.setChecked(toDo.isCompleted());
+        }
     }
 
     void DisplayTestDate() {
@@ -135,8 +170,7 @@ public class EditTodoFragment extends Fragment {
     }
 
     void ShowAlertCancel(){
-        AlertDialog.Builder alertDialog;
-        alertDialog = new AlertDialog.Builder(getContext());
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getContext());
         alertDialog.setMessage(getString(R.string.alert_message))
                 .setTitle(getString(R.string.app_name))
                 .setIcon(R.mipmap.ic_launcher)
@@ -144,7 +178,7 @@ public class EditTodoFragment extends Fragment {
                 .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent= new Intent(getActivity(),MainActivity.class);
+                        Intent intent = new Intent(getActivity(), MainActivity.class);
                         startActivity(intent);
                     }
                 })
