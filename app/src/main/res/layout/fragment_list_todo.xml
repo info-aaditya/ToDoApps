@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,9 +8,35 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listitem_todo_rv_listtodo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/task"
+        android:textColor="@android:color/black"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/listitem_todo_rv_listtodo"
+                android:layout_width="match_parent"
+                android:layout_height="749dp"
+                android:bottomLeftRadius="20dp"
+                android:topRightRadius="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

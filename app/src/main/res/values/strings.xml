@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDo Application</string>
+    <string name="app_name">ToDo List App</string>
     <string name="edit_title">Title</string>
     <string name="edit_description">Description</string>
     <string name="edit_date">Date</string>
@@ -12,6 +12,11 @@
     <string name="hello_blank_fragment">Hello Blank Fragment</string>
     <string name="alert_message">Do you want to main screen?</string>
     <string name="ok">Ok</string>
+    <string name="today">Today</string>
+    <string name="list">All ToDoList</string>
+    <string name="task">Tasks</string>
+    <string name="today_todo">Display Curent Day ToDo List</string>
+
     <!--    Dashboard string name-->
     <string name="please_wait">Please wait...</string>
     <string name="account">Already have an account?</string>
