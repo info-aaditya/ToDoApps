@@ -57,6 +57,7 @@ public class ToDoReprositry {
         private insertToDoAysncTask(ToDoDAO toDoDAO){
             mToDoDao = toDoDAO;
         }
+
         @Override
         protected Void doInBackground(EToDo... eToDos){
             mToDoDao.insert(eToDos[0]);
@@ -69,6 +70,7 @@ public class ToDoReprositry {
         private deleteToDoAysncTask(ToDoDAO toDoDAO){
             mToDoDao = toDoDAO;
         }
+
         @Override
         protected Void doInBackground(EToDo... eToDos){
             mToDoDao.deleteById(eToDos[0]);

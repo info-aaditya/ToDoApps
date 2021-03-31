@@ -18,7 +18,7 @@ public interface ToDoDAO {
     void insert (EToDo todo);
 
     @Query("DELETE FROM todo_table")
-    void deleteALL();
+    void deleteAll();
 
     @Delete
     void deleteById(EToDo todo);
