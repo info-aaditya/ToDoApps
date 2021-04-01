@@ -105,7 +105,7 @@ public class ListTodoFragment extends Fragment {
         }
 
         public void bind (EToDo toDo){
-            SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-mm-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
             title.setText(toDo.getTitle());
             date.setText(sdf.format(toDo.getTodoDate()));
         }

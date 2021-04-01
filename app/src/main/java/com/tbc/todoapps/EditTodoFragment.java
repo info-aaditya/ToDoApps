@@ -71,6 +71,16 @@ public class EditTodoFragment extends Fragment {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(txtTitle.getText().length()==0) {
+                    txtTitle.requestFocus();
+                    txtTitle.setError("Tittle is required");
+                    return;
+                }
+                if(txtDate.getText().length()==0) {
+                    txtDate.requestFocus();
+                    txtDate.setError("Date is required");
+                    return;
+                }
                 SaveToDo();
             }
         });
@@ -86,12 +96,12 @@ public class EditTodoFragment extends Fragment {
 
     void SaveToDo(){
         EToDo eToDo = new EToDo();
-        Date todoDate = new Date();
+        Date toDoDate = new Date();
         int checkedPriority = -1;
         int priority = 0;
         try{
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            todoDate = format.parse(txtDate.getText().toString());
+            toDoDate = format.parse(txtDate.getText().toString());
         }catch (ParseException ex){
             ex.printStackTrace();
         }
@@ -111,7 +121,7 @@ public class EditTodoFragment extends Fragment {
 
         eToDo.setTitle(txtTitle.getText().toString());
         eToDo.setDescription(txtDescription.getText().toString());
-        eToDo.setTodoDate(todoDate);
+        eToDo.setTodoDate(toDoDate);
         eToDo.setPriority(priority);
         eToDo.setCompleted(chComplete.isChecked());
 

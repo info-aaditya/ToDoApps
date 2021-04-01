@@ -38,5 +38,7 @@
                 android:topRightRadius="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
+
     </ScrollView>
+
 </FrameLayout>
