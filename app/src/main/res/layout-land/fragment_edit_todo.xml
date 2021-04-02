@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Edgewater"
+    android:orientation="horizontal"
+    tools:context=".EditTodoFragment">
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/edit_fragment_txt_name"
+            android:layout_width="350dp"
+            android:layout_height="62dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/et_bg"
+            android:ems="10"
+            android:hint="@string/edit_title"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/edit_fragment_txt_date"
+            android:layout_width="355dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/et_bg"
+            android:ems="10"
+            android:hint="@string/edit_date"
+            android:inputType="textPersonName"
+            android:textAlignment="center" />
+
+        <RadioGroup
+            android:id="@+id/edit_fragment_rg_priority"
+            android:layout_width="362dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/edit_fragment_rb_high"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/Bright_Red"
+                android:text="@string/edit_high"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <RadioButton
+                android:id="@+id/edit_fragment_rb_medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/Turbo"
+                android:text="@string/edit_medium"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <RadioButton
+                android:id="@+id/edit_fragment_rb_low"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/Fruit_Salad"
+                android:text="@string/edit_low"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+        </RadioGroup>
+
+        <CheckBox
+            android:id="@+id/edit_fragment_chk_complete"
+            android:layout_width="79dp"
+            android:layout_height="69dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:text="Complete"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="371dp"
+            android:layout_height="73dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/edit_fragment_btn_save"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:text="@string/edit_save" />
+
+            <Button
+                android:id="@+id/edit_fragment_btn_cancel"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:text="@string/cancel" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_fragment_txt_description"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:height="150dp"
+        android:background="@drawable/et_bg"
+        android:ems="10"
+        android:hint="@string/edit_description"
+        android:inputType="textMultiLine|textPersonName"
+        android:lines="5"
+        android:maxLines="5"
+        android:scrollbars="vertical"
+        android:textAlignment="center" />
+
+</LinearLayout>
