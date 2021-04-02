@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -35,6 +36,8 @@ public class EditTodoFragment extends Fragment {
     RadioGroup rgPriority;
     Button btnSave, btnCancel;
     CheckBox chComplete;
+    public boolean isCompleted=false;
+
 
     int todoId;
 
@@ -57,6 +60,19 @@ public class EditTodoFragment extends Fragment {
         btnCancel = rootView.findViewById(R.id.edit_fragment_btn_cancel);
 
         loadUpdateData();
+
+
+        chComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    isCompleted=true;
+                }
+                else {
+                    isCompleted=false;
+                }
+            }
+        });
 
         txtDate.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -125,7 +141,7 @@ public class EditTodoFragment extends Fragment {
         eToDo.setDescription(txtDescription.getText().toString());
         eToDo.setTodoDate(toDoDate);
         eToDo.setPriority(priority);
-        eToDo.setCompleted(chComplete.isChecked());
+        eToDo.setCompleted(isCompleted);
 
         TodoViewModel viewModel  = new ViewModelProvider(this).get(TodoViewModel.class);
         if(todoId != -1){

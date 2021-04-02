@@ -28,9 +28,13 @@ public interface ToDoDAO {
 
     @Query("SELECT * FROM todo_table WHERE id = :id")
     EToDo getToDoById(int id);
+//
+//    @Update(onConflict = OnConflictStrategy.REPLACE)
+//    void update(EToDo... toDo);
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    void update(EToDo... toDo);
+
+    @Update
+    void update(EToDo toDo);
 
     @Query("SELECT * FROM todo_table ORDER BY todo_date, priority desc")
     LiveData<List<EToDo>> getAllToDos();

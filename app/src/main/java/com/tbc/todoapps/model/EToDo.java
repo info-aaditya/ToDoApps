@@ -90,8 +90,7 @@ public class EToDo {
         return isCompleted;
     }
 
-    public void setCompleted(boolean complete) {
-        isCompleted = isCompleted;
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
-
 }
