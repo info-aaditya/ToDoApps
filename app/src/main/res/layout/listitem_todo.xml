@@ -23,7 +23,7 @@
                 android:id="@+id/status_id"
                 android:layout_width="75dp"
                 android:layout_height="wrap_content"
-                android:background="#8EB6BA"
+                android:background="#CBEFF3"
                 android:gravity="center"
                 android:textSize="20sp" />
 
