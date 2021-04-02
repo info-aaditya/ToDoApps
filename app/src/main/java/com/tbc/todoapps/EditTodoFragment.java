@@ -81,7 +81,9 @@ public class EditTodoFragment extends Fragment {
                     txtDate.setError("Date is required");
                     return;
                 }
-                SaveToDo();
+                else {
+                    SaveToDo();
+                }
             }
         });
 
@@ -161,6 +163,7 @@ public class EditTodoFragment extends Fragment {
                     rgPriority.check(R.id.edit_fragment_rb_low);
                     break;
             }
+            chComplete.setVisibility(View.VISIBLE);
             chComplete.setChecked(toDo.isCompleted());
         }
     }
@@ -195,7 +198,6 @@ public class EditTodoFragment extends Fragment {
                 .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                     }
                 });
         alertDialog.show();

@@ -44,6 +44,14 @@ public class ToDoReprositry {
         new deleteToDoAysncTask(mToDoDAO).execute(eToDo);
     }
 
+    public void deleteAll() {
+        new deleteAllToDoAysncTask(mToDoDAO).execute();
+    }
+
+    public void deleteCompleted() {
+        new deleteAllCompletedToDoAysncTask(mToDoDAO).execute();
+    }
+
     public EToDo getTodoById(int id){
         return mToDoDAO.getToDoById(id);
     }
@@ -78,12 +86,39 @@ public class ToDoReprositry {
         }
     }
 
+    private static class deleteAllToDoAysncTask extends AsyncTask<EToDo, Void, Void>{
+        private ToDoDAO mToDoDao;
+        private deleteAllToDoAysncTask(ToDoDAO toDoDAO){
+            mToDoDao = toDoDAO;
+        }
+
+        @Override
+        protected Void doInBackground(EToDo... eToDos){
+            mToDoDao.deleteAll();
+            return null;
+        }
+    }
+
+    private static class deleteAllCompletedToDoAysncTask extends AsyncTask<EToDo, Void, Void>{
+        private ToDoDAO mToDoDao;
+        private deleteAllCompletedToDoAysncTask(ToDoDAO toDoDAO){
+            mToDoDao=toDoDAO;
+        }
+
+        @Override
+        protected Void doInBackground(EToDo... eToDos){
+            mToDoDao.deleteAllCompleted();
+            return null;
+        }
+    }
+
     private static class updateToDoAysncTask extends AsyncTask<EToDo, Void, Void>{
         private ToDoDAO mToDoDao;
         private updateToDoAysncTask(ToDoDAO toDoDAO){
-            mToDoDao = mToDoDao;
+            mToDoDao = toDoDAO;
         }
         @Override
+
         protected Void doInBackground(EToDo... eToDos){
             mToDoDao.update(eToDos[0]);
             return null;

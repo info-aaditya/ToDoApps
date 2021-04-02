@@ -107,9 +107,9 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="15dp"
-        android:text="CheckBox"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:text="Complete"
+        android:textStyle="bold|italic"
+        android:visibility="gone" />
 
     <LinearLayout
         android:layout_width="371dp"

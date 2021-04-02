@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.tbc.todoapps.viewModel.TodoViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,9 +55,11 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.menu_delete_all:
                 Toast.makeText(getApplicationContext(), "Delete all", Toast.LENGTH_LONG).show();
+                new ViewModelProvider(this).get(TodoViewModel.class).deleteAll();
                 break;
             case R.id.menu_delete_completed:
                 Toast.makeText(getApplicationContext(), "Delete Completed", Toast.LENGTH_LONG).show();
+                new ViewModelProvider(this).get(TodoViewModel.class).deleteCompleted();
                 break;
             case R.id.menu_logout:
                 SharedPreferences preferences = getApplicationContext().getSharedPreferences("todo_pref", 0);

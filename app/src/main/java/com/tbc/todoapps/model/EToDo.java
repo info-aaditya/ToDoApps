@@ -93,4 +93,5 @@ public class EToDo {
     public void setCompleted(boolean complete) {
         isCompleted = isCompleted;
     }
+
 }

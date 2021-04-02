@@ -103,7 +103,7 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/et_bg"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textAlignment="center" />
 
         <Button

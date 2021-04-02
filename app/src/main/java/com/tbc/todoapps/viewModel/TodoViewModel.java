@@ -33,9 +33,16 @@ public class TodoViewModel  extends AndroidViewModel {
         mToDoReprositry.delete(ToDo);
     }
 
+    public void deleteAll(){
+        mToDoReprositry.deleteAll();
+    }
+
+    public void deleteCompleted(){
+        mToDoReprositry.deleteCompleted();
+    }
+
     public EToDo getTodoById(int id){
-        mToDoReprositry.getTodoById(id);
-        return null;
+        return mToDoReprositry.getTodoById(id);
     }
 
     public void update(EToDo eToDo){

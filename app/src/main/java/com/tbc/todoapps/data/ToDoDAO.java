@@ -20,6 +20,9 @@ public interface ToDoDAO {
     @Query("DELETE FROM todo_table")
     void deleteAll();
 
+    @Query("DELETE FROM todo_table WHERE is_completed=1")
+    void deleteAllCompleted();
+
     @Delete
     void deleteById(EToDo todo);
 
@@ -27,7 +30,7 @@ public interface ToDoDAO {
     EToDo getToDoById(int id);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void update(EToDo... todo);
+    void update(EToDo... toDo);
 
     @Query("SELECT * FROM todo_table ORDER BY todo_date, priority desc")
     LiveData<List<EToDo>> getAllToDos();

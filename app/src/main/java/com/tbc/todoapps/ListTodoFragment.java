@@ -2,6 +2,13 @@ package com.tbc.todoapps;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -10,13 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tbc.todoapps.model.EToDo;
 import com.tbc.todoapps.viewModel.TodoViewModel;
@@ -64,7 +64,7 @@ public class ListTodoFragment extends Fragment {
     }
 
     void updateRV(){
-        viewModel.getAllToDos().observe(this, new Observer<List<EToDo>>() {
+        viewModel.getAllToDos().observe(getViewLifecycleOwner(), new Observer<List<EToDo>>() {
             @Override
             public void onChanged(List<EToDo> eTodos) {
                 ToDoAdaptor adaptor = new ToDoAdaptor(eTodos);
@@ -74,11 +74,16 @@ public class ListTodoFragment extends Fragment {
     }
 
     private class ToDoHolder extends RecyclerView.ViewHolder{
-        TextView title, date;
+        TextView title, description, date, status;
+        CheckBox completed;
+
         public ToDoHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.listitem_todo, parent, false));
             title = itemView.findViewById(R.id.listitem_tv_title);
+            description = itemView.findViewById(R.id.listitem_tv_description);
             date = itemView.findViewById(R.id.listitem_tv_date);
+            status = itemView.findViewById(R.id.status_id);
+            completed = itemView.findViewById(R.id.edit_fragment_chk_complete);
 
             title.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,7 +91,19 @@ public class ListTodoFragment extends Fragment {
                     loadUpdateItem();
                 }
             });
+            description.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadUpdateItem();
+                }
+            });
             date.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadUpdateItem();
+                }
+            });
+            status.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     loadUpdateItem();
@@ -107,14 +124,16 @@ public class ListTodoFragment extends Fragment {
         public void bind (EToDo toDo){
             SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd");
             title.setText(toDo.getTitle());
+            description.setText(toDo.getDescription());
             date.setText(sdf.format(toDo.getTodoDate()));
+            status.setText(toDo.isCompleted()?"Completed":"Pending");
         }
     }
 
     private class ToDoAdaptor extends RecyclerView.Adapter<ToDoHolder>{
         List<EToDo> eToDoList;
         public ToDoAdaptor(List<EToDo> toDoList){
-            eToDoList =toDoList;
+            eToDoList = toDoList;
         }
 
         @NonNull
