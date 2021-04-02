@@ -33,7 +33,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listitem_todo_rv_listtodo"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:bottomLeftRadius="20dp"
                 android:topRightRadius="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
