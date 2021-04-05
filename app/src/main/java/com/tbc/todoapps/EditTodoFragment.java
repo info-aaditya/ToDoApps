@@ -38,7 +38,6 @@ public class EditTodoFragment extends Fragment {
     CheckBox chComplete;
     public boolean isCompleted=false;
 
-
     int todoId;
 
     public static final int HIGH_PRIORITY = 1;
@@ -60,7 +59,6 @@ public class EditTodoFragment extends Fragment {
         btnCancel = rootView.findViewById(R.id.edit_fragment_btn_cancel);
 
         loadUpdateData();
-
 
         chComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
