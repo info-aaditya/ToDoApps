@@ -11,11 +11,14 @@
     <string name="cancel">Cancel</string>
     <string name="hello_blank_fragment">Hello Blank Fragment</string>
     <string name="alert_message">Do you want to main screen?</string>
+    <string name="alert_delete_all">Do you want to delete all tasks?</string>
+    <string name="alert_delete_comp">Do you want to delete all completed tasks?</string>
+    <string name="alert_logout">Do you want to Logout?</string>
     <string name="ok">Ok</string>
     <string name="status">Status</string>
     <string name="list">All ToDoList</string>
     <string name="task">Tasks</string>
-    <string name="today_todo">Display Curent Day ToDo List</string>
+    <string name="today_todo">Display Current Day ToDo List</string>
 
     <!--    Dashboard string name-->
     <string name="please_wait">Please wait...</string>
