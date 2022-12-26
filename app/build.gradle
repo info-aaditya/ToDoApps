@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdk 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.tbc.todoapps"
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdk 19
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -26,6 +26,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'com.tbc.todoapps'
 }
 
 dependencies {
